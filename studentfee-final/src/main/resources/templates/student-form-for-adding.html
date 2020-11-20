@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Save Student</title>
+</head>
+
+<body>
+
+<div class="container">
+    <h3>Student Form</h3>
+    <hr>
+    <p class="h4 mb-4">Save Student details</p>
+    <form action="#" th:action="@{/students/save1}"
+          th:object="${student}" method="POST">
+        <input type="hidden" th:field="*{id}" />
+        <p style="color:red" th:if="${#fields.hasErrors('roll')}"  th:errors="*{roll}">Error</p>
+        <input type="text" th:field="*{roll}"
+               class="form-control mb-4 col-4" placeholder="Roll number">
+        <p style="color:red" th:if="${#fields.hasErrors('firstName')}"  th:errors="*{firstName}">Error</p>
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 col-4" placeholder="First name">
+        <p style="color:red" th:if="${#fields.hasErrors('lastName')}"  th:errors="*{lastName}">Error</p>
+        <input type="text" th:field="*{lastName}"
+               class="form-control mb-4 col-4" placeholder="Last name">
+        <p style="color:red" th:if="${#fields.hasErrors('email')}"  th:errors="*{email}">Error</p>
+        <input type="text" th:field="*{email}"
+               class="form-control mb-4 col-4" placeholder="Email">
+        <p style="color:red" th:if="${#fields.hasErrors('semester')}"  th:errors="*{semester}">Error</p>
+        <div class="form-group">
+            <select class="form-control mb-4 col-4" th:field="*{semester}" id="pizza">
+                <option value="">Please select</option>
+                <option th:each="due : ${T(com.arshil.springbootdemo.studentfee.entity.Semester).values()}"
+                        th:value="${due}"
+                        th:text="${due}">semester
+                </option>
+            </select>
+        </div>
+        <p style="color:red" th:if="${#fields.hasErrors('feeDue')}"  th:errors="*{feeDue}">Error</p>
+        <div class="form-group drop">
+            <select class="form-control mb-4 col-4" th:field="*{feeDue}" id="pizza1">
+                <option value="">Please select</option>
+                <option th:each="due : ${T(com.arshil.springbootdemo.studentfee.entity.FeeDue).values()}"
+                        th:value="${due}"
+                        th:text="${due}">Fee Due
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+    <hr>
+    <a th:href="@{/students/list}">Back to Students List</a>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

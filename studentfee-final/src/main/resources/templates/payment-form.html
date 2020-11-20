@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Payment details</title>
+</head>
+
+<body>
+
+<div class="container">
+    <h3>Payment Form</h3>
+    <hr>
+    <form action="#" th:action="@{/students/paymentConfirmation(studentId=*{id})}"
+          th:object="${paymentDetails}" method="POST">
+        <input type="hidden" th:field="*{id}" />
+        <p style="color:red" th:if="${#fields.hasErrors('cardNumber')}"  th:errors="*{cardNumber}">Error</p>
+        <input type="text" th:field="*{cardNumber}"
+               class="form-control mb-4 col-4" placeholder="Card Number">
+        <p style="color:#ff0000" th:if="${#fields.hasErrors('cvv')}" th:errors="*{cvv}">Error</p>
+        <input type="password" th:field="*{cvv}"
+               class="form-control mb-4 col-4" placeholder="CVV">
+        <hr>
+        <button type="submit" class="btn btn-info col-2">Pay</button>
+    </form>
+    <hr>
+    <a th:href="@{/students/list}">Back to Students List</a>
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
